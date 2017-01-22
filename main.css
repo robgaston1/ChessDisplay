@@ -1,0 +1,17 @@
+
+
+#board {
+    width: 68vw;
+    height: 68vw;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: 8vw;
+    height: 8vw;
+    background: black;
+    border: .25vw solid white;
+    display: inline-block;
+}
