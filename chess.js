@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    var pieces = {
+    /*var pieces = {
         whKing: "&#9812;",
         whQueen: "&#9813;",
         whRook: "&#9814;",
@@ -13,60 +13,87 @@ $(document).ready(function() {
         blBishop: "&#9821;",
         blKnight: "&#9822;",
         blPawn: "&#9823;",
-    };
+    };*/
     
-    for (var i=1; i<=64; i++) {
-        var numId, letterId, grid;
-        //generate the 0 through 7 label for the grid ID
-        if (i < 8){
-            numId = i;
-        } else if (i % 8 == 0){
-            numId = 8;
-        } else {
-            numId = (i % 8);
-        }
-        //create the letter portion of the grid ID
-        var row = Math.ceil(i/8);
-        switch(row){
-            case 1:
-                letterId = "h";
-                break;
-            case 2:
-                letterId = "g";
-                break;
-            case 3:
-                letterId = "f";
-                break;
-            case 4:
-                letterId= "e";
-                break;
-            case 5:
-                letterId = "d";
-                break;
-            case 6:
-                letterId = "c";
-                break;
-            case 7:
-                letterId = "b";
-                break;
-            case 8:
-                letterId = "a";
-        }
-        grid = letterId + numId;
-        
-        if ((Math.ceil(i/8)) % 2 == 1) {
-            if (i % 2 == 0) {
-                $('#board').append('<div id='+grid+' class="square blk"><div>');
+    var pieces = {
+        blkPawn : {
+            code: "&#9823",
+            start: ['#g1', '#g2', '#g3', '#g4', '#g5', '#g6', '#g7', '#g8'],
+        },
+    
+        whtPawn : {
+            code: "&#9817",
+            start: ['#b1', '#b2', '#b3', '#b4', '#b5', '#b6', '#b7', '#b8'],
+        },
+    };
+                  
+    function createIdNum(i){
+         if (i < 8){
+                return i;
+            } else if (i % 8 == 0){
+                return 8;
             } else {
-                $('#board').append('<div id='+grid+' class="square wht"><div>');
+                return (i % 8);
             }
-        } else {
-            if (i % 2 == 0) {
-                $('#board').append('<div id='+grid+' class="square wht"><div>');
+    }
+
+    function createIdLet(i){
+        var row = Math.ceil(i/8);
+            switch(row){
+                case 1:
+                    return "h";
+                case 2:
+                    return "g";
+                case 3:
+                    return "f";
+                case 4:
+                    return "e";
+                case 5:
+                    return "d";
+                case 6:
+                    return "c";
+                case 7:
+                    return "b";
+                case 8:
+                    return   "a";
+            }
+            
+    }
+    
+    function createId(i) {
+            var numId = createIdNum(i);
+            var letterId = createIdLet(i);
+            return letterId + numId;
+    }
+    
+    function generateBoard() { 
+        console.log()
+        for (var i=1; i<=64; i++) {
+            var grid = createId(i);
+            if ((Math.ceil(i/8)) % 2 == 1) {
+                if (i % 2 == 0) {
+                    $('#board').append('<div id='+grid+' class="square blk"><div>');
+                } else {
+                    $('#board').append('<div id='+grid+' class="square wht"><div>');
+                }
             } else {
-                $('#board').append('<div id='+grid+' class="square blk"><div>');
+                if (i % 2 == 0) {
+                    $('#board').append('<div id='+grid+' class="square wht"><div>');
+                } else {
+                    $('#board').append('<div id='+grid+' class="square blk"><div>');
+                }
             }
         }
     }
-    $('#pieces').html('<p>'+pieces.blKnight+'</p>');
+
+    function placePiece (obj) {
+        for (var j = 0; j < obj.start.length; j++) {
+            $(obj.start[j]).html(obj.code);
+        }
+    }
+    generateBoard();
+    console.log(pieces);
+    for (var k=0; k < pieces.length; k++){
+        placePiece(pieces[k]);
+    }
 });
