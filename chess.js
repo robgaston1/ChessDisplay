@@ -15,17 +15,42 @@ $(document).ready(function() {
         blPawn: "&#9823;",
     };*/
     
-    var pieces = {
-        blkPawn : {
+    var pieces = [
+        {   name: 'blPawn',
             code: "&#9823",
             start: ['#g1', '#g2', '#g3', '#g4', '#g5', '#g6', '#g7', '#g8'],
         },
     
-        whtPawn : {
+        {   name: 'blKnight',
+            code: "&#9822;",
+            start: ['#h2', '#h7'],
+        },
+        
+        {   name: 'blBishop',
+            code: "&#9821",
+            start: ['#h3', '#h6'],
+        },
+        
+        {   name: 'blRook',
+            code: "&#9820;",
+            start: ['#h1', '#h8']
+        },
+        
+        {   name: 'whPawn',
             code: "&#9817",
             start: ['#b1', '#b2', '#b3', '#b4', '#b5', '#b6', '#b7', '#b8'],
         },
-    };
+        
+        {   name: 'blQueen',
+            code: "&#9813;",
+            start: ['#h4'],
+        },
+        
+        {   name: 'blKing',
+            code: "&#9812;",
+            start: ['#h5']
+        },
+    ];
                   
     function createIdNum(i){
          if (i < 8){
@@ -92,7 +117,6 @@ $(document).ready(function() {
         }
     }
     generateBoard();
-    console.log(pieces);
     for (var k=0; k < pieces.length; k++){
         placePiece(pieces[k]);
     }
