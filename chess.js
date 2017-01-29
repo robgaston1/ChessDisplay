@@ -1,54 +1,52 @@
 $(document).ready(function() {
-    
-    /*var pieces = {
-        whKing: "&#9812;",
-        whQueen: "&#9813;",
-        whRook: "&#9814;",
-        whBishop: "&#9815;",
-        whKnight: "&#9816;",
-        whPawn: "&#9817",
-        blKing: "&#9818;",
-        blQueen: "&#9819;",
-        blRook: "&#9820;",
-        blBishop: "&#9821;",
-        blKnight: "&#9822;",
-        blPawn: "&#9823;",
-    };*/
-    
     var pieces = [
         {   name: 'blPawn',
             code: "&#9823",
             start: ['#g1', '#g2', '#g3', '#g4', '#g5', '#g6', '#g7', '#g8'],
         },
-    
         {   name: 'blKnight',
             code: "&#9822;",
             start: ['#h2', '#h7'],
         },
-        
         {   name: 'blBishop',
             code: "&#9821",
             start: ['#h3', '#h6'],
         },
-        
         {   name: 'blRook',
             code: "&#9820;",
             start: ['#h1', '#h8']
         },
-        
-        {   name: 'whPawn',
-            code: "&#9817",
-            start: ['#b1', '#b2', '#b3', '#b4', '#b5', '#b6', '#b7', '#b8'],
-        },
-        
         {   name: 'blQueen',
             code: "&#9813;",
             start: ['#h4'],
         },
-        
         {   name: 'blKing',
             code: "&#9812;",
             start: ['#h5']
+        },
+        {   name: 'whPawn',
+            code: "&#9817",
+            start: ['#b1', '#b2', '#b3', '#b4', '#b5', '#b6', '#b7', '#b8'],
+        },
+        {   name: 'whRook',
+            code: "&#9814;",
+            start: ['#a1', '#a8'],
+        },
+        {   name: 'whKnight',
+            code: "&#9816;",
+            start: ['#a2','#a7'],
+        },
+        {   name: 'whBishop',
+            code: "&#9815;",
+            start: ['#a3', '#a6'],
+        },
+        {   name: 'whQueen',
+            code: '&#9813;',
+            start: ['#a4'],
+        },
+        {   name: 'whKing',
+            code: '&#9812',
+            start: ['#a5'],
         },
     ];
                   
@@ -82,7 +80,6 @@ $(document).ready(function() {
                 case 8:
                     return   "a";
             }
-            
     }
     
     function createId(i) {
@@ -112,12 +109,19 @@ $(document).ready(function() {
     }
 
     function placePiece (obj) {
+        //iterates through the starting grid id of each piece and displays there
         for (var j = 0; j < obj.start.length; j++) {
             $(obj.start[j]).html(obj.code);
         }
     }
-    generateBoard();
-    for (var k=0; k < pieces.length; k++){
+    function setPieces() {
+        //iterate through the array of objects, call function to place each piece
+        for (var k=0; k < pieces.length; k++){
         placePiece(pieces[k]);
+        }
     }
+    generateBoard();
+    setPieces();
+    $()
+    
 });
